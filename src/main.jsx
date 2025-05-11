@@ -1,8 +1,6 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css'; // or another themes
 import { Auth0Provider } from '@auth0/auth0-react';
 
 import './index.css'
