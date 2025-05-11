@@ -37,71 +37,91 @@ function App() {
 
   return (
     <div className="flex h-screen">
-      {isAuthenticated ? (
-        <button onClick={() => loginWithRedirect()}>Log In</button>
-      ) : (
         <div className="flex-1 flex flex-col">
           <AppBar position="static" className="z-10">
             <Toolbar className="justify-between">
-              <IconButton
-                color="inherit"
-                edge="start"
-                onClick={() => setOpen(!open)}
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton>
+              {
+                !isAuthenticated ? ( <div></div> ) : (
+                  <IconButton
+                    color="inherit"
+                    edge="start"
+                    onClick={() => setOpen(!open)}
+                    sx={{ mr: 2 }}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                )
+              }
               <Typography>
                 Phone SMS
               </Typography>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: 'coral', // or any hex/code
-                  '&:hover': {
-                    backgroundColor: '#1565c0', // darker shade on hover
-                  },
-                }}
-                className="ml-auto px-4 py-2 bg-blue-600 text-white rounded"
-                onClick={() => logout()}>
-                Log Out
-              </Button>
+              {!isAuthenticated ? (
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'coral', // or any hex/code
+                    '&:hover': {
+                      backgroundColor: '#1565c0', // darker shade on hover
+                    },
+                  }}
+                  className="ml-auto px-4 py-2 bg-blue-600 text-white rounded"
+                  onClick={() => loginWithRedirect()}>
+                    Log In
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'coral', // or any hex/code
+                    '&:hover': {
+                      backgroundColor: '#1565c0', // darker shade on hover
+                    },
+                  }}
+                  className="ml-auto px-4 py-2 bg-blue-600 text-white rounded"
+                  onClick={() => logout()}>
+                    Log Out
+                </Button>
+              )}
             </Toolbar>
           </AppBar>
-          <div className="flex flex-1">
-            {/* Drawer inside the page */}
-            <Drawer
-              variant="temporary"
-              anchor="left"
-              open={open}
-              onClose={() => setOpen(false)}
-              sx={{
-                width: drawerWidth,
-                flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                  width: drawerWidth,
-                  boxSizing: 'border-box',
-                },
-              }}
-            >
-              <List>
-                {['Home', 'History', 'Import'].map((text) => (
-                  <ListItem button key={text}>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
-            </Drawer>
+          {
+            !isAuthenticated ? (
+              <div></div>
+            ) : (
+              <div className="flex flex-1">
+                {/* Drawer inside the page */}
+                <Drawer
+                  variant="temporary"
+                  anchor="left"
+                  open={open}
+                  onClose={() => setOpen(false)}
+                  sx={{
+                    width: drawerWidth,
+                    flexShrink: 0,
+                    '& .MuiDrawer-paper': {
+                      width: drawerWidth,
+                      boxSizing: 'border-box',
+                    },
+                  }}
+                >
+                  <List>
+                    {['Home', 'History', 'Import'].map((text) => (
+                      <ListItem button key={text}>
+                        <ListItemText primary={text} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Drawer>
 
-            {/* Main Content Area */}
-            <main className="flex-1 bg-gray-100 p-6">
-              <Routes>
-                <Route path="/" element={<Home />} />
-              </Routes>
-            </main>
-          </div>
+                {/* Main Content Area */}
+                <main className="flex-1 bg-gray-100 p-6">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                  </Routes>
+                </main>
+              </div>
+            )}
         </div>
-      )}
     </div>
   )
 }
