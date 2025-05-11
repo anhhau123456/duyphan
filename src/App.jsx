@@ -59,9 +59,9 @@ function App() {
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: 'coral', // or any hex/code
+                    backgroundColor: '#746bca',
                     '&:hover': {
-                      backgroundColor: '#1565c0', // darker shade on hover
+                      backgroundColor: '#272168',
                     },
                   }}
                   className="ml-auto px-4 py-2 bg-blue-600 text-white rounded"
@@ -72,9 +72,9 @@ function App() {
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: 'coral', // or any hex/code
+                    backgroundColor: '#746bca',
                     '&:hover': {
-                      backgroundColor: '#1565c0', // darker shade on hover
+                      backgroundColor: '#272168', // darker shade on hover
                     },
                   }}
                   className="ml-auto px-4 py-2 bg-blue-600 text-white rounded"
