@@ -1,5 +1,6 @@
 import { AgGridReact } from 'ag-grid-react';
 import { useState } from 'react';
+
 import { ClientSideRowModelModule, themeAlpine } from 'ag-grid-community';
 
 export default function MyGrid() {
@@ -11,25 +12,22 @@ export default function MyGrid() {
     ];
 
     const columnDefs = [
-        { headerName: 'Name', field: 'name', checkboxSelection: true, headerCheckboxSelection: true },
+        {
+            headerName: 'Name',
+            field: 'name',
+            checkboxSelection: true,
+            headerCheckboxSelection: true,
+        },
         { headerName: 'Age', field: 'age' },
         { headerName: 'Country', field: 'country' },
-      ];
-
-
-    const theme = themeAlpine
-        .withParams({
-            browserColorScheme: "light",
-            headerFontSize: 14
-        });
+    ];
 
     return (
-        <div className="ag-theme-alpine" style={{ height: 400, width: '100%' }}>
+        <div className="ag-theme-alpine h-[calc(100vh-10rem)] " style={{ width: '100%' }}>
             <AgGridReact
                 rowData={rowData}
                 columnDefs={columnDefs}
                 modules={[ClientSideRowModelModule]}
-                theme={theme}
                 animateRows={true}
                 pagination={true}
                 paginationPageSize={2}
