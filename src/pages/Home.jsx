@@ -48,13 +48,25 @@ export default function MyGrid() {
     }, []);
 
     
-    const handleGetSelected = () => {
+    const handleGetSelected = async () => {
         const selectedRows = gridRef.current.api.getSelectedRows();
 
         if (message == '' || selectedRows.length == 0) {
+            // Show Error
             console.log('error')
         } else {
-            console.log('ok')
+            try {
+                const sendSMS = async () => {
+                    const response = await Api.sendSMS({
+                        message: message,
+                        data: selectedRows
+                    });
+                }
+
+                sendSMS()
+            } catch (err) {
+                console.log('err', err)
+            }
         }
     };
 

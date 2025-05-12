@@ -43,12 +43,12 @@ const fetchHistories = async () => {
     }
 };
 
-const sendSMS = async (people) => {
+const sendSMS = async (data) => {
     try {
         const res = await fetch(`${host}/send-sms`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data: people }),   // rows = array of objects
+            body: JSON.stringify(data),   // rows = array of objects
         });
         const json = await res.json();
 
